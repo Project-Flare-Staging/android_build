@@ -591,6 +591,14 @@ function lunch()
         fi
     fi
 
+    # Setup Flare Environment
+    if (echo -n $product | grep -q -e "^flare_") ; then
+        FLARE_BUILD=$(echo -n $product | sed -e 's/^flare_//g')
+    else
+        FLARE_BUILD=
+    fi
+    export FLARE_BUILD
+
     # Validate the selection and set all the environment stuff
     _lunch_meat $product $release $variant
 }

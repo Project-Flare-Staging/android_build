@@ -600,20 +600,7 @@ function lunch()
         fi
     fi
 
-    if ! check_product $product $release
-    then
-        # if we can't find a product, try to grab it off the LineageOS GitHub
-        T=$(gettop)
-        cd $T > /dev/null
-        vendor/lineage/build/tools/roomservice.py $product
-        cd - > /dev/null
-        check_product $product $release
-    else
-        T=$(gettop)
-        cd $T > /dev/null
-        vendor/lineage/build/tools/roomservice.py $product true
-        cd - > /dev/null
-    fi
+    check_product $product $release
 
     # Validate the selection and set all the environment stuff
     _lunch_meat $product $release $variant
